@@ -239,7 +239,7 @@ def print_invoice_data(data: InvoiceData):
 
 
 if __name__ == "__main__":
-    PDF_FILE = "invoice.pdf"
+    PDF_FILE = "big_invoice.pdf" #Change file name here
     OUTPUT_FILE = "annotated_invoice.pdf"
     
     print(f"\n🚀 Document Analyzer Starting...")

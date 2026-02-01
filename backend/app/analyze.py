@@ -5,8 +5,8 @@ Main script to analyze bank statements
 import sys
 import json
 import pandas as pd
-from analytics import FinancialAnalyzer
-from ai_insights import FinancialInsightsAgent
+from app.analytics import FinancialAnalyzer
+from app.ai_insights import FinancialInsightsAgent
 
 
 def load_transactions():

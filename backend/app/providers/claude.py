@@ -2,7 +2,7 @@ from typing import Type, TypeVar
 from pydantic import BaseModel
 from anthropic import Anthropic
 from .base import AIProvider
-import config
+from app import config
 import base64
 
 T = TypeVar('T', bound=BaseModel)

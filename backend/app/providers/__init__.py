@@ -4,7 +4,7 @@ from .gemini import GeminiProvider
 from .claude import ClaudeProvider
 from .openai import OpenAIProvider
 from .groq import GroqProvider
-import config
+from app import config
 
 
 def get_provider() -> AIProvider:

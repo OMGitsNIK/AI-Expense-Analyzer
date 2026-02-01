@@ -2,7 +2,7 @@ from typing import Type, TypeVar
 from pydantic import BaseModel
 from groq import Groq
 from .base import AIProvider
-import config
+from app import config
 import base64
 import fitz  # PyMuPDF
 import io

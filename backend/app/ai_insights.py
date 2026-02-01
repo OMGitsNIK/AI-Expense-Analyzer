@@ -11,6 +11,8 @@ from openai import OpenAI
 from dotenv import load_dotenv
 
 load_dotenv()
+from app import config
+from google import genai
 
 class FinancialInsightsAgent:
     """Generates human-readable financial insights using AI"""
@@ -34,6 +36,9 @@ class FinancialInsightsAgent:
             from groq import Groq
             self.client = Groq(api_key=os.getenv("GROQ_API_KEY"))
             self.model = "openai/gpt-oss-120b"
+        elif provider == "gemini":
+            self.client = genai.Client(api_key=config.GEMINI_API_KEY)
+            self.model = config.MODELS["gemini"]
     
     def generate_insights(self, financial_report: Dict) -> str:
         """
@@ -87,6 +92,16 @@ Tone: Friendly but professional, like a financial advisor talking to a friend.
                 messages=[{"role": "user", "content": prompt}]
             )
             return response.choices[0].message.content
+        
+        elif self.provider == "gemini":
+            response = self.client.models.generate_content(
+                model=self.model,
+                contents=prompt
+            )
+            return response.text
+        
+        else:
+            raise ValueError(f"Unknown provider: {self.provider}")
     
     def answer_question(self, question: str, financial_report: Dict) -> str:
         """
@@ -129,10 +144,20 @@ Provide a clear, specific answer based on the data. Include numbers and percenta
             )
             return response.choices[0].message.content
 
+        elif self.provider == "gemini":
+            response = self.client.models.generate_content(
+                model=self.model,
+                contents=prompt
+            )
+            return response.text
+            
+        else:
+            raise ValueError(f"Unknown provider: {self.provider}")
+
 
 # Example usage
 if __name__ == "__main__":
-    from analytics import FinancialAnalyzer
+    from app.analytics import FinancialAnalyzer
     
     # Generate analytics
     analyzer = FinancialAnalyzer('transactions.json')

@@ -15,10 +15,11 @@ OPENROUTER_API_KEY = os.getenv("OPENROUTER_API_KEY")
 
 # Model configurations
 MODELS = {
-    "gemini": "gemini-2.0-flash-exp",
+    "gemini": "gemini-2.0-flash",
     "claude": "claude-sonnet-4-20250514",
     "openai": "gpt-4o-mini",
-    "groq": "meta-llama/llama-4-scout-17b-16e-instruct",
+    # "groq": "meta-llama/llama-4-scout-17b-16e-instruct",
+    "groq": "llama-3.3-70b-versatile",
     # "openrouter": "meta-llama/llama-4-maverick-17b-128e-instruct",
     # "openrouter": "google/gemini-2.0-flash-exp:free",
     # "openrouter": "qwen/qwen-2-vl-72b-instruct:free",

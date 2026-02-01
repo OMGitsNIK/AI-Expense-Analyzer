@@ -1,10 +1,10 @@
 import os
 import sys
-from models import InvoiceData, BankStatementData, InvoiceExtraction
-from providers import get_provider
+from app.models import InvoiceData, BankStatementData, InvoiceExtraction
+from app.providers import get_provider
 import fitz  # PyMuPDF
-import config
-from pdf_utils import unlock_pdf
+from app import config
+from app.pdf_utils import unlock_pdf
 import tempfile
 from pathlib import Path
 
@@ -52,7 +52,7 @@ def extract_document_data(pdf_path: str, doc_type: str = None, include_layout: b
     
     # Choose schema and prompt based on document type
     if doc_type == "bank_statement":
-        from models import BankStatementData
+        from app.models import BankStatementData
         schema = BankStatementData
         prompt = """
 Extract ALL information from this bank statement document.
@@ -90,7 +90,7 @@ CRITICAL INSTRUCTIONS:
 This is a multi-page document. Process ALL pages carefully.
 """
     else:  # invoice
-        from models import InvoiceData, InvoiceExtraction
+        from app.models import InvoiceData, InvoiceExtraction, InvoiceLayout
         schema = InvoiceExtraction if include_layout else InvoiceData
         prompt = """
 Extract all invoice information from this document.

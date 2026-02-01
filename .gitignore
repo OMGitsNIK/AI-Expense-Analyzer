@@ -20,4 +20,10 @@ invoice.pdf
 transactions.json
 financial_report.json
 financial_insights.md
-\n# Data files\nbig_invoice.pdf\ninvoice_excel.xls
+# Data files
+big_invoice.pdf
+invoice_excel.xls
+*.xls
+*.xlsx
+*.pdf
+!README.md

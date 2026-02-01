@@ -2,7 +2,7 @@ from typing import Type, TypeVar
 from pydantic import BaseModel
 from google import genai
 from .base import AIProvider
-import config
+from app import config
 
 T = TypeVar('T', bound=BaseModel)
 
